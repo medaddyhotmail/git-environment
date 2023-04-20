@@ -33,7 +33,7 @@ jobs:
         run: npm start & npx wait-on http://127.0.0.1$PORT
 
       - name: Run Test
-        run: npm test
+        run: npm testemote add name url
 
       - name: Output Information
         run: echo MONGODB_DB_USERNAME: ${{ env.MONGODB_DB_USERNAME }}  
