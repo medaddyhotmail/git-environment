@@ -1,0 +1,50 @@
+name: Deployment
+on:
+  push:
+    branches: 
+    - master
+    - dev
+
+env:
+  MONGODB_DB_NAME: GH-DBDEMO
+jobs:
+  test:
+    env:
+      MONGODB_CLUSTER_ADDRESS: cluster0.dkun9vh.mongodb.net
+      MONGODB_DB_USERNAME: medaddy
+      MONGODB_DB_PASSWORD: SvpDrIC9ErTLhjmP
+      PORT: 8080
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Get Code
+        uses: actions/checkout@v3
+
+      - name: Cache Dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: npm-deps-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Server
+        run: npm start & npx wait-on http://127.0.0.1$PORT
+
+      - name: Run Test
+        run: npm testemote add name url
+
+      - name: Output Information
+        run: |
+          echo MONGODB_DB_USERNAME: ${{ env.MONGODB_DB_USERNAME }}  
+  
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Output Information
+        run: |
+          echo MONGODB_DB_USERNAME: ${{ env.MONGODB_DB_USERNAME }} 
+          echo MONGODB_DB_NAME: $MONGODB_DB_NAME  
