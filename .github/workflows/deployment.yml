@@ -31,7 +31,7 @@ jobs:
 
       - name: Install Mongo DB Drivers
         run: npm install mongodb
-        
+
       - name: Run Server
         run: npm start & npx wait-on http://127.0.0.1$PORT
 
@@ -39,7 +39,7 @@ jobs:
         run: npm testemote add name url
 
       - name: Output Information
-        run: echo MONGODB_DB_USERNAME: ${{ env.MONGODB_DB_USERNAME }}  
+        run: "echo MONGODB_DB_USERNAME: ${{ env.MONGODB_DB_USERNAME }}"
   
   deploy:
     needs: test
@@ -48,5 +48,5 @@ jobs:
     steps:
       - name: Output Information
         run: |
-          echo MONGODB_DB_USERNAME: ${{ env.MONGODB_DB_USERNAME }} 
-          echo MONGODB_DB_NAME: $MONGODB_DB_NAME  
+          echo "MONGODB_DB_USERNAME: ${{ env.MONGODB_DB_USERNAME }}" 
+          echo "MONGODB_DB_NAME: $MONGODB_DB_NAME"
