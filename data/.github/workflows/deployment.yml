@@ -33,7 +33,7 @@ jobs:
         run: npm start & npx wait-on http://127.0.0.1$PORT
 
       - name: Run Test
-        run: npm testemote add name url
+        run: npm test
 
       - name: Output Information
         run: |
