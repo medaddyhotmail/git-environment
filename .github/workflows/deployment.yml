@@ -10,6 +10,7 @@ env:
 jobs:
   test:
     env:
+      MONGODB_CONNECTION_PROTOCOL: mongodb+srv://medaddy:SvpDrIC9ErTLhjmP@cluster0.dkun9vh.mongodb.net/test
       MONGODB_CLUSTER_ADDRESS: cluster0.dkun9vh.mongodb.net
       MONGODB_DB_USERNAME: medaddy
       MONGODB_DB_PASSWORD: SvpDrIC9ErTLhjmP
